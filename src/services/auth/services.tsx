@@ -38,13 +38,17 @@ export async function signIn(email:string){
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-export async function loginWithGoogle(data:{email:string, fullname:string, role:string}, callback: Function){
+export async function loginWithGoogle(data:{
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    email:string, fullname:string, password:string, role:string,createdAt?: Date, updatedAt?: Date}, callback: Function){
     const user = await retrieveDataByField('users', 'email', data.email)
     if(user.length > 0){
         callback(user[0])
     }else{
         data.role = 'member';
+        data.password = '';
+        data.createdAt = new Date();
+        data.updatedAt = new Date();
         await addData('users', data, (result:boolean) =>{
             if(result){
                 callback(data)

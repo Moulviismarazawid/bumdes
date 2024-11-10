@@ -1,0 +1,57 @@
+.user{
+    &__table{
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        thead{
+            tr{
+                background-color: #ccc;
+            }
+        }
+        th,td{
+            padding: 10px;
+            text-align: left;
+        }
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+        &__action{
+            display: flex;
+            gap: 10px;
+            &__edit{
+                background-color: #e9d53b;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                color: #000;
+                cursor: pointer;
+                &:hover{
+                    background-color: #333;
+                    color: #fff;
+                }
+                i{
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+            }
+            &__delete{
+                background-color: #e53b3b;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                color: #000;
+                cursor: pointer;
+                &:hover{
+                    background-color: #333;
+                    color: #fff;
+                }
+                i{
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

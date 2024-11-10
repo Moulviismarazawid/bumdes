@@ -1,18 +1,20 @@
 import styles from './Input.module.scss'
 
-type Proptype ={
+type Proptypes ={
     label?: string;
     name: string;
     type: string;
     placeholder?: string;
+    defaultValue?: string;
+    disabled? : boolean;
 }
 
-const Input = (props: Proptype) =>{
-    const {label, name, type, placeholder} = props;
+const Input = (props: Proptypes) =>{
+    const {label, name, type, placeholder, defaultValue, disabled} = props;
     return(
          <div className={styles.container}>
            {label && <label htmlFor={name}>{label}</label>}
-            <input name={name} id={name} type={type} placeholder={placeholder} className={styles.container__input} />
+            <input name={name} id={name} type={type} placeholder={placeholder} className={styles.container__input} defaultValue={defaultValue} disabled={disabled}/>
         </div>
     )
 }

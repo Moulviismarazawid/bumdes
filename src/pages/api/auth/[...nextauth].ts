@@ -47,7 +47,7 @@ const authOptions:NextAuthOptions = {
                 token.email = user.email;
                 token.fullname = user.fullname;
                 token.phone = user.phone;
-                token.rol = user.rol;
+                token.role = user.role;
             }
             if(account?.provider === 'google'){
                 const data = {
@@ -55,6 +55,7 @@ const authOptions:NextAuthOptions = {
                     email : user.email,
                     role: user.role,
                     type : "google",
+                    password : ''
                 }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             await loginWithGoogle(data,(res:any) => {

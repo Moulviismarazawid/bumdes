@@ -1,5 +1,5 @@
 import app from "./init";
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from 'firebase/firestore'
 
 const firestore = getFirestore(app);
 
@@ -40,4 +40,22 @@ export async function addData(collectionName:string, data:unknown,callback:Funct
 })
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-function-type
+export async function updateData(collectionName:string, id:string, data:any, callback:Function){
+    const docRef = doc(firestore, collectionName, id)
+    await updateDoc(docRef, data).then(() => {
+        callback(true)
+    }).catch(() => {
+        callback(false)
+    });
+}
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+export async function deleteData(collectionName:string, id:string, callback:Function){
+    const docRef = doc(firestore,collectionName, id)
+    await deleteDoc(docRef).then(() =>{
+        callback(true)
+    }).catch(() =>{
+        callback(false)
+    })
+}
