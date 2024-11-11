@@ -2,12 +2,15 @@ import Button from "@/components/ui/Button"
 import Modal from "@/components/ui/Modal"
 import userServices from "@/services/user"
 import styles from './ModalDeletedUser.module.scss'
+import { useSession } from "next-auth/react"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ModalDeleteUser = (props:any) => {
-    const { deletedUser, setDeletedUser ,setUsersData} = props
+    const { deletedUser, setDeletedUser ,setUsersData} = props;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session:any = useSession();
     const handeleDeleteData = async () =>{
-        userServices.deleteData(deletedUser.id); 
+        userServices.deleteUser(deletedUser.id, session.data?.accessToken); 
         setDeletedUser({});
         const {data} = await userServices.getAllUser()
         setUsersData(data.data)

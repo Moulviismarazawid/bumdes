@@ -3,6 +3,7 @@ import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
 import userServices from "@/services/user";
+import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 
 
@@ -10,8 +11,10 @@ import { FormEvent, useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ModalUpdateUser = (props: any) => {
     const { updatedUser, setUpdatedUser , setUsersData} = props
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session:any = useSession();
     const [isLoading, setIsLoading] = useState(false)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleUpdate = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true)
@@ -20,8 +23,7 @@ const ModalUpdateUser = (props: any) => {
         const data = {
             role: form.role.value,
         }
-        const result = await userServices.updateUser(updatedUser.id, data)
-        console.log(result)
+        const result = await userServices.updateUser(updatedUser.id, data, session.data?.accessToken)
 
         if(result.status === 200){
             form.reset()

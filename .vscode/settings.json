@@ -1,0 +1,8 @@
+{
+    "console-ninja.showWhatsNew": false,
+    "console-ninja.output.showLogsFromLogPointsOnly": true,
+    "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+        "live-preview-extension": true,
+        "live-server-extension": true
+    }
+}
