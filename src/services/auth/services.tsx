@@ -40,7 +40,7 @@ export async function signIn(email:string){
 
 export async function loginWithGoogle(data:{
     // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    email:string, fullname:string, password:string, role:string,createdAt?: Date, updatedAt?: Date}, callback: Function){
+    id?:string,email:string, fullname:string, password:string, role:string, image:string,createdAt?: Date, updatedAt?: Date}, callback: Function){
     const user = await retrieveDataByField('users', 'email', data.email)
     if(user.length > 0){
         callback(user[0])
@@ -49,8 +49,10 @@ export async function loginWithGoogle(data:{
         data.password = '';
         data.createdAt = new Date();
         data.updatedAt = new Date();
-        await addData('users', data, (result:boolean) =>{
-            if(result){
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await addData('users', data, (status:boolean , res:any) =>{
+            data.id = res.path.replace('users/','')
+            if(status){
                 callback(data)
             }
         })

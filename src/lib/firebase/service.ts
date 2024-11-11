@@ -32,8 +32,8 @@ export async function retrieveDataByField(collectionName:string, field:string, v
 // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export async function addData(collectionName:string, data:unknown,callback:Function){
  await addDoc(collection(firestore, collectionName), data)
-.then(() => {
-    callback(true)
+.then((res) => {
+    callback(true,res)
 }).catch((error) => {    
     callback(false)
     console.log(error)

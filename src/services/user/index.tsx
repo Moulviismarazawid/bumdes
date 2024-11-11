@@ -12,6 +12,12 @@ const userServices ={
         headers:{
             'Authorization': `Bearer ${token}`
         }
+    }),
+
+    getProfile: (token:string) => instance.get('/api/user/profile',{
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
     })
 }
 

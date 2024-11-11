@@ -1,7 +1,5 @@
 import DashboardAdminViews from "@/components/views/admin/Dashboard";
 
-
-
 const AdminPage = () => {
     return (
         <>
